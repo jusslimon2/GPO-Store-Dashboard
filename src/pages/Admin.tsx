@@ -345,7 +345,6 @@ export default function Admin() {
               </div>
             )}
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">GPO Statistics</h1>
               <p className="text-sm text-rose-500 font-medium">Admin Panel</p>
             </div>
           </div>
