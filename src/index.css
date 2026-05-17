@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-rose-50 via-pink-50 to-rose-100;
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent;
+  }
+  
+  .shadow-soft {
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.1);
+  }
+  
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.2);
+  }
+}

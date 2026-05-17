@@ -48,79 +48,80 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-6xl mx-auto px-4 py-6">
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-rose-100">
+      <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             {hasIcon ? (
               <div className="flex items-center">
-                <img src="/icon.png" alt="GPO" className="w-6 h-6 object-contain" />
+                <img src="/icon.png" alt="GPO" className="w-8 h-8 object-contain" />
               </div>
             ) : (
-              <div className="p-2 bg-slate-800 rounded-lg">
-                <BarChart3 className="w-5 h-5 text-white" />
+              <div className="p-3 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl shadow-soft">
+                <BarChart3 className="w-6 h-6 text-white" />
               </div>
             )}
             <div>
-              <h1 className="text-xl font-bold text-slate-800">GPO Statistics</h1>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">GPO Statistics</h1>
+              <p className="text-xs text-rose-500 font-medium">Dashboard</p>
             </div>
           </div>
           <Link
             to="/admin"
-            className="flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white text-xs font-semibold rounded-lg transition-all shadow-soft hover:shadow-glow"
           >
-            <Shield className="w-3.5 h-3.5" />
+            <Shield className="w-4 h-4" />
             Admin
           </Link>
         </div>
-        <div className="mb-6">
+        <div className="mb-8">
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search GPO by last 4 digits"
-            className="w-full max-w-sm px-3 py-2 border border-slate-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="w-full max-w-sm px-4 py-3 border-2 border-rose-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent placeholder-rose-300 transition-all"
           />
         </div>
 
         {loading ? (
-          <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-6 h-6 text-blue-500 animate-spin" />
+          <div className="flex items-center justify-center py-20">
+            <Loader2 className="w-8 h-8 text-rose-500 animate-spin" />
           </div>
         ) : error ? (
-          <div className="flex items-center gap-2 justify-center py-16 text-red-600">
-            <AlertCircle className="w-4 h-4" />
-            <p className="text-xs">{error}</p>
+          <div className="flex items-center gap-2 justify-center py-20 bg-red-50 border-2 border-red-200 rounded-xl p-6">
+            <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+            <p className="text-sm text-red-600 font-medium">{error}</p>
           </div>
         ) : records.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-slate-400">
-            <BarChart3 className="w-10 h-10 mb-2 text-slate-200" />
-            <p className="text-xs font-medium">No records yet</p>
+          <div className="flex flex-col items-center justify-center py-20 bg-rose-50 rounded-xl border-2 border-rose-200">
+            <BarChart3 className="w-12 h-12 mb-3 text-rose-200" />
+            <p className="text-sm font-semibold text-rose-400">No records yet</p>
           </div>
         ) : (
           <>
             {/* Table */}
-            <div className="bg-white border border-slate-200 rounded overflow-hidden">
-              <table className="w-full text-xs">
+            <div className="bg-white border-2 border-rose-200 rounded-xl overflow-hidden shadow-soft">
+              <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-slate-200 border-b border-slate-300">
-                    <th className="px-3 py-2 text-left font-bold text-slate-700">GPO Number</th>
-                    <th className="px-3 py-2 text-center font-bold text-slate-700">Interest Rate</th>
-                    <th className="px-3 py-2 text-right font-bold text-slate-700">Profit</th>
-                    <th className="px-3 py-2 text-right font-bold text-slate-700">Used Limit</th>
+                  <tr className="bg-gradient-to-r from-rose-100 to-pink-100 border-b-2 border-rose-200">
+                    <th className="px-4 py-3 text-left font-bold text-rose-700">GPO Number</th>
+                    <th className="px-4 py-3 text-center font-bold text-rose-700">Interest Rate</th>
+                    <th className="px-4 py-3 text-right font-bold text-rose-700">Profit</th>
+                    <th className="px-4 py-3 text-right font-bold text-rose-700">Used Limit</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredRecords.map((item) => (
-                    <tr key={item.id} className="border-b border-slate-100">
-                      <td className="px-3 py-2 bg-blue-100 text-slate-800 font-medium">{item.gpo}</td>
-                      <td className="px-3 py-2 bg-pink-100 text-center text-slate-800 font-medium">
+                  {filteredRecords.map((item, idx) => (
+                    <tr key={item.id} className={`border-b border-rose-100 transition-colors ${idx % 2 === 0 ? 'bg-white' : 'bg-rose-50'} hover:bg-rose-100`}>
+                      <td className="px-4 py-3 bg-gradient-to-r from-rose-100 to-pink-100 text-rose-900 font-semibold">{item.gpo}</td>
+                      <td className="px-4 py-3 text-center text-rose-900 font-semibold">
                         {(item.interestRate * 100).toFixed(1)}%
                       </td>
-                      <td className="px-3 py-2 bg-pink-100 text-right text-slate-800 font-medium">
+                      <td className="px-4 py-3 text-right text-rose-900 font-semibold">
                         {formatNumber(item.profit)}
                       </td>
-                      <td className="px-3 py-2 bg-green-100 text-right text-slate-800 font-medium">
+                      <td className="px-4 py-3 text-right text-rose-900 font-semibold">
                         {formatNumber(item.usedLimit)}
                       </td>
                     </tr>
