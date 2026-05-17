@@ -374,7 +374,7 @@ export default function Admin() {
             </p>
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="w-full flex items-center gap-3 px-4 py-4 border-3 border-dashed border-rose-300 hover:border-rose-500 hover:bg-rose-50 rounded-lg transition-all duration-200 text-left group"
+              className="w-full flex items-center gap-3 px-4 py-4 border-[3px] border-dashed border-rose-300 hover:border-rose-500 hover:bg-rose-50 rounded-lg transition-all duration-200 text-left group"
             >
               <div className="p-2 bg-rose-100 group-hover:bg-rose-200 rounded-lg transition-colors flex-shrink-0">
                 <FileSpreadsheet className="w-6 h-6 text-rose-500 group-hover:text-rose-600 transition-colors" />
@@ -623,7 +623,7 @@ export default function Admin() {
         {/* Preview Modal */}
         {preview.isOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
-            <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col border-2 border-rose-200">
+            <div className="bg-white rounded-[34px] overflow-hidden shadow-2xl max-w-2xl w-full max-h-[80vh] flex flex-col border-2 border-rose-200">
               <div className="px-6 py-4 border-b-2 border-rose-200 bg-gradient-to-r from-rose-50 to-pink-50 flex items-center justify-between">
                 <h2 className="text-lg font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">Preview Upload Data</h2>
                 <button
@@ -694,7 +694,7 @@ export default function Admin() {
 
         {pendingEditConfirm && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
-            <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full border-2 border-rose-200">
+            <div className="bg-white rounded-[34px] overflow-hidden shadow-2xl max-w-md w-full border-2 border-rose-200">
               <div className="px-6 py-4 border-b-2 border-rose-200 bg-gradient-to-r from-rose-50 to-pink-50">
                 <h2 className="text-lg font-bold text-rose-700 flex items-center gap-2">
                   <AlertCircle className="w-5 h-5 text-amber-500" />
@@ -705,7 +705,7 @@ export default function Admin() {
                 <p className="text-sm text-rose-700">
                   Are you sure you want to update <span className="font-bold text-rose-900">{pendingEditConfirm.field}</span> for this record?
                 </p>
-                <div className="bg-rose-50 border-2 border-rose-200 rounded-lg p-3">
+                <div className="bg-rose-50 border-2 border-rose-200 rounded-3xl p-3">
                   <p className="text-sm font-bold text-rose-900">New value: {pendingEditConfirm.value}</p>
                 </div>
               </div>
@@ -730,7 +730,7 @@ export default function Admin() {
 
         {deleteConfirm && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
-            <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full border-2 border-red-200">
+            <div className="bg-white rounded-[34px] overflow-hidden shadow-2xl max-w-md w-full border-2 border-red-200">
               <div className="px-6 py-4 border-b-2 border-red-200 bg-red-50">
                 <h2 className="text-lg font-bold text-red-700 flex items-center gap-2">
                   <AlertCircle className="w-5 h-5" />
@@ -764,7 +764,7 @@ export default function Admin() {
         {/* Confirmation Modal */}
         {confirmSave.isOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
-            <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full border-2 border-rose-200">
+            <div className="bg-white rounded-[34px] overflow-hidden shadow-2xl max-w-md w-full border-2 border-rose-200">
               <div className="px-6 py-4 border-b-2 border-rose-200 bg-gradient-to-r from-rose-50 to-pink-50">
                 <h2 className="text-lg font-bold text-rose-700 flex items-center gap-2">
                   <AlertCircle className="w-5 h-5 text-amber-500" />
@@ -774,8 +774,7 @@ export default function Admin() {
 
               <div className="px-6 py-5 space-y-3">
                 <p className="text-sm text-rose-700">
-                  Are you sure you want to save <span className="font-bold text-rose-900">{confirmSave.data.length}</span> records to the database?
-                </p>
+                    Uploading will replace all existing records with the new file. You are saving <span className="font-bold text-rose-900">{confirmSave.data.length}</span> records.</p>
                 <div className="bg-amber-50 border-2 border-amber-300 rounded-lg p-4">
                   <p className="text-sm font-bold text-amber-900">
                     This action cannot be easily undone. Please review the data carefully before confirming.

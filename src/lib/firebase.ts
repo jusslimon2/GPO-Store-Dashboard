@@ -51,6 +51,10 @@ export async function saveRecords(records: GpoRecord[]): Promise<void> {
   const col = collection(db, COLLECTION);
   const batch = writeBatch(db);
 
+  // Remove all existing records first so the new upload replaces everything.
+  const existingDocs = await getDocs(col);
+  existingDocs.docs.forEach((existingDoc) => batch.delete(existingDoc.ref));
+
   for (const r of records) {
     const docRef = doc(col);
     batch.set(docRef, { ...r, batchId, createdAt: now });
